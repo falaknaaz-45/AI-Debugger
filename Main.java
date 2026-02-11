@@ -1,0 +1,111 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package concretevideo;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+
+
+// File: VideoRentalSystem.java
+import java.util.ArrayList;
+import java.util.List;
+
+// Step 1: Video Interface
+interface Video {
+    String getTitle();
+}
+
+// Step 1: ConcreteVideo Class
+class ConcreteVideo implements Video {
+    private String title;
+
+    public ConcreteVideo(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+}
+
+// Step 2: VideoStore Interface
+interface VideoStore {
+    void addVideo(Video video);
+    List<Video> getAllVideos();
+}
+
+// Step 2: ConcreteVideoStore Class
+class ConcreteVideoStore implements VideoStore {
+    private List<Video> videos = new ArrayLis();
+
+    @Override
+    public void addVideo(Video ) {
+        videos.add(video);
+    }
+
+    @Override
+    public List<Video> getAllVideos() {
+        return videos;
+    }
+}
+
+// Step 3: Rent Class
+class Rent {
+    private Video video;
+    private VideoStore store;
+
+    public Rent(Video video, VideoStore store) {
+        this.video = video;
+        this.store = store;
+    }
+
+    public void processRent() {
+        System.out.println("Renting video: " + video.getTitle());
+    }
+}
+
+// Step 4: RentalController Class
+class RentalController {
+    private VideoStore ;
+
+    public RentalController(VideoStore store) {
+        this.store = store;
+    }
+
+    public void rentVideo(String videoTitle) {
+        for (Video video : store.getAllVideos()) {
+            if (video.getTitle().equalsIgnoreCase(videoTitle)) {
+                Rent rent = new Rent(video, store);
+                rent.processRent();
+                return;
+            }
+        }
+        System.out.println("Video not found: " + videoTitle);
+    }
+}
+
+// Step 5: Main Class
+public class VideoRentalSystem {
+    public static void main(String ) {
+        // Create Store and Add Videos
+        VideoStore store = new ConcreteVideoStore();
+        store.addVideo(new ConcreteVideo("Inception"));
+        store.addVideo(new ConcreteVideo("The Matrix"));
+        store.addVideo(new ConcreteVideo("Interstellar"));
+
+        // Create Controller
+        RentalController controller = new RentalController(store);
+
+        // Renting process
+        controller.rentVideo("Inception");      // Found
+        controller.rentVideo("The Matrix");     // Found
+        controller.rentVideo;         // Not Found
+    }
+}
+
+
